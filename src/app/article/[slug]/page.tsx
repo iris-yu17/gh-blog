@@ -9,6 +9,8 @@ import {
   TimelineTitle,
 } from 'flowbite-react';
 import { HiArrowNarrowRight } from 'react-icons/hi';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import Prose from '@/components/ui/Prose';
 
 import { getSingleIssue, getComments } from '@/fetch';
 
@@ -46,7 +48,11 @@ export default async function ArticleDetail(props) {
           <TimelineTime>{created_at}</TimelineTime>
           <TimelineTitle>{title}</TimelineTitle>
           <TimelineBody> by {user.login}</TimelineBody>
-          <TimelineBody>{body}</TimelineBody>
+          <TimelineBody>
+            <Prose>
+              <MDXRemote source={body} />
+            </Prose>
+          </TimelineBody>
           <Button color="gray">
             Learn More
             <HiArrowNarrowRight className="ml-2 h-3 w-3" />
@@ -62,7 +68,11 @@ export default async function ArticleDetail(props) {
               <TimelineTime>{updated_at}</TimelineTime>
               <TimelineTitle>{title}</TimelineTitle>
               <TimelineBody> by {user.login}</TimelineBody>
-              <TimelineBody>{body}</TimelineBody>
+              <TimelineBody>
+                <Prose>
+                  <MDXRemote source={body} />
+                </Prose>
+              </TimelineBody>
               <Button color="gray">
                 Learn More
                 <HiArrowNarrowRight className="ml-2 h-3 w-3" />

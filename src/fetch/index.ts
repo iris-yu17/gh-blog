@@ -18,7 +18,11 @@ export async function getComments(issueNumber: string) {
 
   try {
     // TODO: test error case
-    const res = await fetch(apiUrl);
+    const res = await fetch(apiUrl, {
+      headers: {
+        "Authorization": process.env.CLIENT_SECRET
+      } as HeadersInit
+    });
 
     return res.json();
   } catch (e) {
@@ -47,7 +51,11 @@ export async function getSingleIssue(issueNumber: number) {
 
   try {
     // TODO: test error case
-    const res = await fetch(apiUrl);
+    const res = await fetch(apiUrl, {
+      headers: {
+        "Authorization": process.env.CLIENT_SECRET
+      } as HeadersInit
+    });
 
     return res.json();
   } catch (e) {

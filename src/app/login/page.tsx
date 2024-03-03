@@ -9,6 +9,11 @@ function Login() {
 
   return (
     <Card className="max-w-sm" onSubmit={handleSubmit}>
+      <a
+        href={`https://github.com/login/oauth/authorize?scope=user:email&client_id=${process.env.CLIENT_ID}`}
+      >
+        test
+      </a>
       <form className="flex flex-col gap-4">
         <div>
           <div className="mb-2 block">

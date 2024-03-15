@@ -20,7 +20,7 @@ export async function getComments(issueNumber: string) {
     // TODO: test error case
     const res = await fetch(apiUrl, {
       headers: {
-        "Authorization": process.env.CLIENT_SECRET
+        "Authorization": process.env.GITHUB_CLIENT_SECRET
       } as HeadersInit
     });
 
@@ -53,7 +53,7 @@ export async function getSingleIssue(issueNumber: number) {
     // TODO: test error case
     const res = await fetch(apiUrl, {
       headers: {
-        "Authorization": process.env.CLIENT_SECRET
+        "Authorization": process.env.GITHUB_CLIENT_SECRET
       } as HeadersInit
     });
 

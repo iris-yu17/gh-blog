@@ -1,6 +1,6 @@
 "use server";
 
-import { Beer } from "@/type";
+import { Beer } from "@/types";
 
 export default async function fetchBeers(page: number) {
   const perPage = 5;

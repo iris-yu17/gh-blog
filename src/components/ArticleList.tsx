@@ -5,7 +5,7 @@ import InfiniteScroll from './InfiniteScroll';
 
 import { getBeersData, getIssuesData } from '@/fetch';
 import { useEffect, useState } from 'react';
-import { Beer } from '@/type';
+import { Beer } from '@/types';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 

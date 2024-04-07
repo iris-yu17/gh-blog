@@ -20,8 +20,8 @@ export async function getComments(issueNumber: string) {
     // TODO: test error case
     const res = await fetch(apiUrl, {
       headers: {
-        // "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`
-        "Authorization": process.env.GITHUB_CLIENT_SECRET
+        "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`
+        // "Authorization": process.env.GITHUB_CLIENT_SECRET
       } as HeadersInit
     });
 
@@ -54,8 +54,8 @@ export async function getSingleIssue(issueNumber: number) {
     // TODO: test error case
     const res = await fetch(apiUrl, {
       headers: {
-        // "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`
-        "Authorization": process.env.GITHUB_CLIENT_SECRET
+        "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`
+        // "Authorization": process.env.GITHUB_CLIENT_SECRET
       } as HeadersInit
     });
 
@@ -72,6 +72,48 @@ export async function createIssue(token: string, body: string) {
   try {
     const res = await fetch(apiUrl, {
       method: 'POST',
+      headers: {
+        "Accept": "application/vnd.github+json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: body
+    });
+
+    return res.json();
+  } catch (e) {
+    console.log(`Fail creating issue: ${e}`);
+    return null;
+  }
+}
+
+export async function closeIssue(token: string, issueNumber: number) {
+  const apiUrl = `https://api.github.com/repos/iris-yu17/gh-blog/issues/${issueNumber}`;
+
+  try {
+    const res = await fetch(apiUrl, {
+      method: 'PATCH',
+      headers: {
+        "Accept": "application/vnd.github+json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        state: 'closed'
+      })
+    });
+
+    return res.json();
+  } catch (e) {
+    console.log(`Fail creating issue: ${e}`);
+    return null;
+  }
+}
+
+export async function updateIssue(token: string, issueNumber: number, body: string) {
+  const apiUrl = `https://api.github.com/repos/iris-yu17/gh-blog/issues/${issueNumber}`;
+
+  try {
+    const res = await fetch(apiUrl, {
+      method: 'PATCH',
       headers: {
         "Accept": "application/vnd.github+json",
         "Authorization": `Bearer ${token}`

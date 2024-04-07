@@ -13,8 +13,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 import { getSingleIssue, getComments } from '@/fetch';
 import IssueActions from './issueActions';
-import { IssueDataType , CommentsType} from '@/types';
-
+import { IssueDataType, CommentsType } from '@/types';
 
 type PageProps = {
   params: { slug: string };
@@ -30,11 +29,9 @@ export default async function ArticleDetail(props: PageProps) {
 
   const comments: CommentsType[] = await getComments(issueNumber);
 
-  console.log(data);
-
   return (
     <>
-      <IssueActions token={token} issueNumber={issueNumber} />
+      {session && <IssueActions token={token} issueNumber={issueNumber} />}
       <div className="mb-4">
         <h1 className="text-4xl mb-1">{title}</h1>
         <div className="flex gap-2 text-gray-500">

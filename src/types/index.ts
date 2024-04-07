@@ -9,8 +9,11 @@ export type CardData = {
   title: string;
   url: string;
   number: string;
-  user: string;
+  user: {
+    login: string;
+  };
   comments: string;
+  id: number;
 };
 
 export type CommentsType = {

@@ -1,15 +1,16 @@
 'use client';
 
+import { CardData } from '@/types';
 import { Button, Card } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
 
-export default function CardUi({ data }) {
+export default function CardUi({ data }: { data: CardData }) {
   const { title, number, user, comments } = data;
   const router = useRouter();
   return (
     <Card className="max-w-sm my-2 mx-auto w-full md:w-1/2">
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-       {title}
+        {title}
       </h5>
       <p className="font-normal text-gray-700 dark:text-gray-400">
         作者: {user.login}

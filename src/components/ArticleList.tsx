@@ -11,7 +11,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const ITEM_PER_PAGE = 10;
 
-export default function ArticleList(props) {
+export default function ArticleList(props: { totalCount: number }) {
   const { totalCount } = props;
   const [loadMore, setLoadMore] = useState(false);
   const [page, setPage] = useState(1);

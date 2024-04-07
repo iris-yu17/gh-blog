@@ -23,7 +23,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} px-4`}>
-        <div className="container">
+        <div className="container pt-16">
           <Header session={session}/>
           {children}
         </div>

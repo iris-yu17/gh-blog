@@ -29,9 +29,19 @@ export default function CreateNewPostContent({ token }: { token: string }) {
   };
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (bodyValue.length < 30) {
+          setShowModal(true);
+          setModalText('文章內容至少需要 30 字')
+          return;
+        }
+        handleCreatPost();
+      }}
+    >
       {!token ? (
-        <h1 className='text-3xl text-center'>請先登入</h1>
+        <h1 className="text-3xl text-center">請先登入</h1>
       ) : (
         <>
           <div className="mb-2">請輸入文章標題：</div>
@@ -40,10 +50,11 @@ export default function CreateNewPostContent({ token }: { token: string }) {
             onChange={(e) => {
               setTitleValue(e.target.value);
             }}
+            required
           />
           <div className="flex flex-col md:flex-row gap-2 flex-grow mb-2">
             <div className="md:w-1/2 h-full">
-              <div className="my-2">請輸入文章內容：</div>
+              <div className="my-2">請輸入內文：</div>
               <Textarea
                 required
                 className="min-h-40"
@@ -52,6 +63,7 @@ export default function CreateNewPostContent({ token }: { token: string }) {
                   setBodyValue(e.target.value);
                 }}
               />
+              <span className="mt-2 text-sm">目前字數：{bodyValue.length}</span>
             </div>
             <div className="md:w-1/2 h-full">
               <div className="my-2">預覽內文：</div>
@@ -62,7 +74,7 @@ export default function CreateNewPostContent({ token }: { token: string }) {
               </div>
             </div>
           </div>
-          <Button onClick={handleCreatPost}>發布</Button>
+          <Button type="submit">發布</Button>
         </>
       )}
 
@@ -81,6 +93,6 @@ export default function CreateNewPostContent({ token }: { token: string }) {
           </div>
         </Modal.Body>
       </Modal>
-    </>
+    </form>
   );
 }

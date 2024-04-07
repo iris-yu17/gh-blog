@@ -4,10 +4,9 @@ export async function getIssuesData(page: number) {
 
   try {
     const res = await fetch(apiUrl, {
-      headers: {
-        "Authorization": `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`
-        // "Authorization": process.env.GITHUB_CLIENT_SECRET
-      }
+      // headers: {
+      //   "Authorization": `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`
+      // }
     });
 
     return res.json();

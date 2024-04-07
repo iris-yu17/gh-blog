@@ -34,9 +34,11 @@ export default function IssueActions({
   return (
     <>
       <div className="flex gap-3 mb-3">
-        <button onClick={()=>{
-          router.push(`/edit/${issueNumber}`)
-        }}>
+        <button
+          onClick={() => {
+            router.push(`/edit/${issueNumber}`);
+          }}
+        >
           <Badge color="indigo" size="sm">
             編輯
           </Badge>

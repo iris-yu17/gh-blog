@@ -7,7 +7,6 @@ import Prose from '@/components/ui/Prose';
 import { updateIssue } from '@/fetch';
 import { IssueDataType } from '@/types';
 
-
 export default function EditContent({
   token,
   issueData,
@@ -37,13 +36,24 @@ export default function EditContent({
   };
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (bodyValue.length < 30) {
+          setShowModal(true);
+          setModalText('文章內容至少需要 30 字');
+          return;
+        }
+        handleUpdatePost();
+      }}
+    >
       <div className="mb-2">請輸入文章標題：</div>
       <TextInput
         value={titleValue}
         onChange={(e) => {
           setTitleValue(e.target.value);
         }}
+        required
       />
       <div className="flex flex-col md:flex-row gap-2 flex-grow mb-2">
         <div className="md:w-1/2 h-full">
@@ -56,6 +66,7 @@ export default function EditContent({
               setBodyValue(e.target.value);
             }}
           />
+          <span className="mt-2 text-sm">目前字數：{bodyValue.length}</span>
         </div>
         <div className="md:w-1/2 h-full">
           <div className="my-2">預覽內文：</div>
@@ -66,7 +77,7 @@ export default function EditContent({
           </div>
         </div>
       </div>
-      <Button onClick={handleUpdatePost}>更新</Button>
+      <Button type="submit">更新</Button>
 
       <Modal
         show={showModal}
@@ -83,6 +94,6 @@ export default function EditContent({
           </div>
         </Modal.Body>
       </Modal>
-    </>
+    </form>
   );
 }

@@ -5,14 +5,20 @@ import { getIssuesData, getTotalOpenIssuesCount } from '@/fetch';
 import { IssueDataType } from '@/types';
 
 export default async function Article() {
-  const data: IssueDataType[] = await getIssuesData(1);
+  const data: IssueDataType[] | { message: string } = await getIssuesData(1);
 
   const totalCount = await getTotalOpenIssuesCount();
 
   return (
     <>
-      {data?.map((item) => <CardUi data={item} key={item.id} />)}
-      <ArticleList totalCount={totalCount} />
+      {Array.isArray(data) ? (
+        <>
+          {data?.map((item) => <CardUi data={item} key={item.id} />)}
+          <ArticleList totalCount={totalCount} />
+        </>
+      ) : (
+        <>{data.message}</>
+      )}
     </>
   );
 }

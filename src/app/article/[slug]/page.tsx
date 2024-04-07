@@ -1,15 +1,11 @@
 import {
-  Button,
-  Badge,
   Timeline,
   TimelineBody,
   TimelineContent,
   TimelineItem,
   TimelinePoint,
   TimelineTime,
-  TimelineTitle,
 } from 'flowbite-react';
-import { HiArrowNarrowRight } from 'react-icons/hi';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Prose from '@/components/ui/Prose';
 import { getServerSession } from 'next-auth';
@@ -17,27 +13,15 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 import { getSingleIssue, getComments } from '@/fetch';
 import IssueActions from './issueActions';
+import { IssueDataType , CommentsType} from '@/types';
 
-export type IssueDataType = {
-  title: string;
-  body: string;
-  user: {
-    login: string;
-  };
-  created_at: string;
+
+type PageProps = {
+  params: { slug: string };
 };
 
-type CommentsType = {
-  id: string;
-  updated_at: string;
-  body: string;
-  user: {
-    login: string;
-  };
-};
-
-export default async function ArticleDetail(props) {
-  const issueNumber = props.params.slug;
+export default async function ArticleDetail(props: PageProps) {
+  const issueNumber = Number(props.params.slug);
   const session = await getServerSession(authOptions);
   const token = session?.accessToken || '';
 

@@ -1,5 +1,5 @@
 'use client';
-XMLSerializer
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Badge, Modal, Button } from 'flowbite-react';
@@ -20,7 +20,6 @@ export default function IssueActions({
 
   const handleDelete = async () => {
     const res = await closeIssue(token, issueNumber);
-    console.log(res);
 
     if (res.message) {
       setModalText(`刪除失敗：${res.message}`);
@@ -66,7 +65,7 @@ export default function IssueActions({
             <div className="flex justify-center">
               <Button
                 onClick={() => {
-                  router.push('/article');
+                  router.push('/');
                 }}
               >
                 回到文章列表

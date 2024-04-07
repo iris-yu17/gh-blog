@@ -26,9 +26,9 @@ export default function InfiniteScroll(props) {
   return (
     <>
       {disable ? (
-        <div>No More Data</div>
+        <div className='text-center'>No More Data</div>
       ) : (
-        <div ref={ref}>
+        <div ref={ref} className='flex justify-center'>
           <Spinner aria-label="Default status example" />
         </div>
       )}

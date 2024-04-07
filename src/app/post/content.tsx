@@ -30,35 +30,41 @@ export default function CreateNewPostContent({ token }: { token: string }) {
 
   return (
     <>
-      <div className="mb-2">請輸入文章標題：</div>
-      <TextInput
-        value={titleValue}
-        onChange={(e) => {
-          setTitleValue(e.target.value);
-        }}
-      />
-      <div className="flex flex-col md:flex-row gap-2 flex-grow mb-2">
-        <div className="md:w-1/2 h-full">
-          <div className="my-2">請輸入文章內容：</div>
-          <Textarea
-            required
-            className="min-h-40"
-            value={bodyValue}
+      {!token ? (
+        <h1 className='text-3xl text-center'>請先登入</h1>
+      ) : (
+        <>
+          <div className="mb-2">請輸入文章標題：</div>
+          <TextInput
+            value={titleValue}
             onChange={(e) => {
-              setBodyValue(e.target.value);
+              setTitleValue(e.target.value);
             }}
           />
-        </div>
-        <div className="md:w-1/2 h-full">
-          <div className="my-2">預覽內文：</div>
-          <div className="border-gray-300 border-dashed rounded-lg p-4 border-2 overflow-auto min-h-40">
-            <Prose>
-              <Markdown>{bodyValue}</Markdown>
-            </Prose>
+          <div className="flex flex-col md:flex-row gap-2 flex-grow mb-2">
+            <div className="md:w-1/2 h-full">
+              <div className="my-2">請輸入文章內容：</div>
+              <Textarea
+                required
+                className="min-h-40"
+                value={bodyValue}
+                onChange={(e) => {
+                  setBodyValue(e.target.value);
+                }}
+              />
+            </div>
+            <div className="md:w-1/2 h-full">
+              <div className="my-2">預覽內文：</div>
+              <div className="border-gray-300 border-dashed rounded-lg p-4 border-2 overflow-auto min-h-40">
+                <Prose>
+                  <Markdown>{bodyValue}</Markdown>
+                </Prose>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <Button onClick={handleCreatPost}>發布</Button>
+          <Button onClick={handleCreatPost}>發布</Button>
+        </>
+      )}
 
       <Modal
         show={showModal}

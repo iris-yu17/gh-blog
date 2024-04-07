@@ -5,7 +5,8 @@ import Markdown from 'react-markdown';
 import { Textarea, Button, TextInput, Modal } from 'flowbite-react';
 import Prose from '@/components/ui/Prose';
 import { updateIssue } from '@/fetch';
-import { IssueDataType } from '@/app/article/[slug]/page';
+import { IssueDataType } from '@/types';
+
 
 export default function EditContent({
   token,
@@ -26,7 +27,7 @@ export default function EditContent({
       title: titleValue,
       body: bodyValue,
     });
-    const res = await updateIssue(token, number, body);
+    const res = await updateIssue(token, Number(number), body);
     if (res.message) {
       setModalText(`更新失敗：${res.message}`);
     } else {
@@ -65,7 +66,7 @@ export default function EditContent({
           </div>
         </div>
       </div>
-      <Button onClick={handleUpdatePost}>發布</Button>
+      <Button onClick={handleUpdatePost}>更新</Button>
 
       <Modal
         show={showModal}

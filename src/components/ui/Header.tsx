@@ -14,14 +14,15 @@ import { signIn, signOut } from 'next-auth/react';
 function Header(props) {
   const { session } = props;
   return (
-    <Navbar fluid rounded className="fixed w-full top-0 left-0 z-50 h-16 shadow">
+    <Navbar
+      fluid
+      rounded
+      className="fixed w-full top-0 left-0 z-50 h-16 shadow"
+    >
       <NavbarToggle />
       <NavbarCollapse>
-        <NavbarLink href="/" active>
-          Home
-        </NavbarLink>
-        <NavbarLink href="/article">Article List</NavbarLink>
-        <NavbarLink href="/post">Create New Post</NavbarLink>
+        <NavbarLink href="/">文章列表</NavbarLink>
+        <NavbarLink href="/post">新增文章</NavbarLink>
       </NavbarCollapse>
       {session ? (
         <>
@@ -30,7 +31,7 @@ function Header(props) {
               signOut();
             }}
           >
-            Log out: {session.user.name}
+            登出：{session.user.name}
           </Button>
         </>
       ) : (
@@ -39,7 +40,7 @@ function Header(props) {
             signIn('github');
           }}
         >
-          Log in with github
+          Github 登入
         </Button>
       )}
     </Navbar>

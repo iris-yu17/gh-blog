@@ -3,19 +3,19 @@
 import CardUi from './ui/CardUi';
 import InfiniteScroll from './InfiniteScroll';
 
-import { getBeersData, getIssuesData } from '@/fetch';
+import { getIssuesData } from '@/fetch';
 import { useEffect, useState } from 'react';
-import { Beer } from '@/types';
+import { CardData } from '@/types';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const ITEM_PER_PAGE = 3;
+const ITEM_PER_PAGE = 10;
 
 export default function ArticleList(props) {
   const { totalCount } = props;
   const [loadMore, setLoadMore] = useState(false);
   const [page, setPage] = useState(1);
-  const [data, setData] = useState<Beer[]>([]);
+  const [data, setData] = useState<CardData[]>([]);
 
   const loadMoreData = async () => {
     await delay(1000);

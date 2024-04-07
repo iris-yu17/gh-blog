@@ -9,7 +9,7 @@ import { CardData } from '@/types';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const ITEM_PER_PAGE = 3;
+const ITEM_PER_PAGE = 10;
 
 export default function ArticleList(props: { totalCount: number }) {
   const { totalCount } = props;

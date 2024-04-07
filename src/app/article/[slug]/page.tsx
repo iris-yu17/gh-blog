@@ -9,7 +9,7 @@ import {
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Prose from '@/components/ui/Prose';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import authOptions from "@/utils/options";
 
 import { getSingleIssue, getComments } from '@/fetch';
 import IssueActions from './issueActions';

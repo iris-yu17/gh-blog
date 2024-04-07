@@ -10,8 +10,9 @@ import {
   NavbarToggle,
 } from 'flowbite-react';
 import { signIn, signOut } from 'next-auth/react';
+import { Session } from 'next-auth';
 
-function Header(props) {
+function Header(props: { session: Session | null }) {
   const { session } = props;
   return (
     <Navbar
@@ -31,7 +32,7 @@ function Header(props) {
               signOut();
             }}
           >
-            登出：{session.user.name}
+            登出：{session?.user?.name}
           </Button>
         </>
       ) : (

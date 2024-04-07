@@ -1,6 +1,6 @@
 import EditContent from './content';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import authOptions from "@/utils/options";
 import { getSingleIssue } from '@/fetch';
 
 export default async function CreateNewPost({

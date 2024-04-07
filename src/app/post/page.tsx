@@ -1,6 +1,6 @@
 import CreateNewPostContent from './content';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import authOptions from "@/utils/options";
 
 export default async function CreateNewPost() {
   const session = await getServerSession(authOptions);

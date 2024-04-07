@@ -21,6 +21,7 @@ function Header(props) {
           Home
         </NavbarLink>
         <NavbarLink href="/article">Article List</NavbarLink>
+        <NavbarLink href="/post">Create New Post</NavbarLink>
       </NavbarCollapse>
       {session ? (
         <>

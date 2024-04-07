@@ -2,9 +2,15 @@
 
 import { useInView } from 'react-intersection-observer';
 import { Spinner } from 'flowbite-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 
-export default function InfiniteScroll(props) {
+type PageProps = {
+  setLoadMore: Dispatch<SetStateAction<boolean>>;
+  totalCount: number;
+  currentCount: number;
+};
+
+export default function InfiniteScroll(props: PageProps) {
   const { setLoadMore, totalCount, currentCount } = props;
 
   const [disable, setDisable] = useState(false);
@@ -26,9 +32,9 @@ export default function InfiniteScroll(props) {
   return (
     <>
       {disable ? (
-        <div className='text-center'>No More Data</div>
+        <div className="text-center">No More Data</div>
       ) : (
-        <div ref={ref} className='flex justify-center'>
+        <div ref={ref} className="flex justify-center">
           <Spinner aria-label="Default status example" />
         </div>
       )}

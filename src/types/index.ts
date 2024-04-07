@@ -7,12 +7,12 @@ export type Beer = {
 
 export type CardData = {
   title: string;
-  url: string;
-  number: string;
+  url?: string;
+  number: number;
   user: {
     login: string;
   };
-  comments: string;
+  comments?: number;
   id: number;
 };
 

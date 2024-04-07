@@ -33,11 +33,13 @@ export default function ArticleList(props: { totalCount: number }) {
   return (
     <>
       {data?.map((item) => <CardUi data={item} key={item.id} />)}
-      <InfiniteScroll
-        setLoadMore={setLoadMore}
-        totalCount={totalCount}
-        currentCount={data.length + ITEM_PER_PAGE}
-      />
+      {totalCount >= ITEM_PER_PAGE && (
+        <InfiniteScroll
+          setLoadMore={setLoadMore}
+          totalCount={totalCount}
+          currentCount={data.length + ITEM_PER_PAGE}
+        />
+      )}
     </>
   );
 }

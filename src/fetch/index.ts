@@ -1,9 +1,14 @@
 export async function getIssuesData(page: number) {
-  const ITEM_PER_PAGE = 3;
+  const ITEM_PER_PAGE = 10;
   const apiUrl = `https://api.github.com/repos/iris-yu17/gh-blog/issues?page=${page}&per_page=${ITEM_PER_PAGE}`;
 
   try {
-    const res = await fetch(apiUrl);
+    const res = await fetch(apiUrl, {
+      headers: {
+        "Authorization": `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`
+        // "Authorization": process.env.GITHUB_CLIENT_SECRET
+      }
+    });
 
     return res.json();
   } catch (e) {
@@ -18,7 +23,7 @@ export async function getComments(issueNumber: number) {
   try {
     const res = await fetch(apiUrl, {
       headers: {
-        "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`
+        "Authorization": `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`
         // "Authorization": process.env.GITHUB_CLIENT_SECRET
       } as HeadersInit
     });
@@ -50,7 +55,7 @@ export async function getSingleIssue(issueNumber: number) {
   try {
     const res = await fetch(apiUrl, {
       headers: {
-        "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`
+        "Authorization": `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`
         // "Authorization": process.env.GITHUB_CLIENT_SECRET
       } as HeadersInit
     });

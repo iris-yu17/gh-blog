@@ -67,7 +67,7 @@ export default function IssueActions({
             <div className="flex justify-center">
               <Button
                 onClick={() => {
-                  router.push('/');
+                  window.location.href = '/';
                 }}
               >
                 回到文章列表

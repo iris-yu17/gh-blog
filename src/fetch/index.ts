@@ -7,6 +7,7 @@ export async function getIssuesData(page: number) {
       // headers: {
       //   "Authorization": `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`
       // }
+      cache: 'no-store',
     });
 
     return res.json();
@@ -22,9 +23,10 @@ export async function getComments(issueNumber: number) {
   try {
     const res = await fetch(apiUrl, {
       headers: {
-        "Authorization": `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`
+        Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
         // "Authorization": process.env.GITHUB_CLIENT_SECRET
-      } as HeadersInit
+      } as HeadersInit,
+      cache: 'no-store',
     });
 
     return res.json();
@@ -35,10 +37,11 @@ export async function getComments(issueNumber: number) {
 }
 
 export async function getTotalOpenIssuesCount() {
-  const apiUrl = 'https://api.github.com/search/issues?q=repo:iris-yu17/gh-blog+type:issue+state:open';
+  const apiUrl =
+    'https://api.github.com/search/issues?q=repo:iris-yu17/gh-blog+type:issue+state:open';
 
   try {
-    const res = await fetch(apiUrl);
+    const res = await fetch(apiUrl, {cache: 'no-store'});
     const data = await res.json();
 
     return data.total_count;
@@ -54,9 +57,10 @@ export async function getSingleIssue(issueNumber: number) {
   try {
     const res = await fetch(apiUrl, {
       headers: {
-        "Authorization": `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`
+        Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
         // "Authorization": process.env.GITHUB_CLIENT_SECRET
-      } as HeadersInit
+      } as HeadersInit,
+      cache: 'no-store'
     });
 
     return res.json();
@@ -73,10 +77,10 @@ export async function createIssue(token: string, body: string) {
     const res = await fetch(apiUrl, {
       method: 'POST',
       headers: {
-        "Accept": "application/vnd.github+json",
-        "Authorization": `Bearer ${token}`
+        Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${token}`,
       },
-      body: body
+      body: body,
     });
 
     return res.json();
@@ -93,12 +97,12 @@ export async function closeIssue(token: string, issueNumber: number) {
     const res = await fetch(apiUrl, {
       method: 'PATCH',
       headers: {
-        "Accept": "application/vnd.github+json",
-        "Authorization": `Bearer ${token}`
+        Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        state: 'closed'
-      })
+        state: 'closed',
+      }),
     });
 
     return res.json();
@@ -108,17 +112,21 @@ export async function closeIssue(token: string, issueNumber: number) {
   }
 }
 
-export async function updateIssue(token: string, issueNumber: number, body: string) {
+export async function updateIssue(
+  token: string,
+  issueNumber: number,
+  body: string,
+) {
   const apiUrl = `https://api.github.com/repos/iris-yu17/gh-blog/issues/${issueNumber}`;
 
   try {
     const res = await fetch(apiUrl, {
       method: 'PATCH',
       headers: {
-        "Accept": "application/vnd.github+json",
-        "Authorization": `Bearer ${token}`
+        Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${token}`,
       },
-      body: body
+      body: body,
     });
 
     return res.json();

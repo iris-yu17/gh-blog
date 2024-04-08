@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Live Demo
-[https://vercel.com/iris-yu17/gh-blog](https://vercel.com/iris-yu17/gh-blog)
+[https://gh-blog-gilt.vercel.app/](https://gh-blog-gilt.vercel.app/)
 
 ## Getting Started
 
